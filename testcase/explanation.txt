@@ -1,0 +1,6 @@
+The paper indicates that humans have a certain pattern when they are playing the paper-scissor-rock game.
+
+
+Every player will choose from {stay, rotate left, rotate right} with a certain probablity when he is winning or losing(two different sets of probablity). 
+The probablity changes with the rewards alpha changes too. But in this first example, let's suppose the alpha is fixed. 
+
