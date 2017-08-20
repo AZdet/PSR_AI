@@ -3,7 +3,7 @@ lookTab = {"r": 0, "s": 1, "p": 2}
 [r, s, p] = ["r", "s", "p"]
 actions = [r, s, p]
 alpha = 1.1
-upbound = 20
+upbound = 5000
 [p11, p12, p13] = [0.001, 0.004, 0.995]  # w-, w+, w0
 [p21, p22, p23] = [0.063, 0.791, 0.146]  # t-, t+, t0
 [p31, p32, p33] = [0.989, 0.001, 0.01] # l-, l+, l0
@@ -79,15 +79,25 @@ p2.setAction(action2)
 (state1, state2) = getRes(action1, action2)
 p1.state = state1
 p2.state = state2
+f = open('./test4.txt', 'w+')#'C:\Users\lenovo\Documents\SRTP\PSR_AI\testcase\test.txt', 'w')
+action1s = []
+action2s = []
 for i in range(0, upbound):
     action1 = p1.getAction()
     action2 = p2.getAction()
     p1.setAction(action1)
     p2.setAction(action2)
-    print("action(p1,p2): ",action1," ",action2, "\n")
+    #print("action(p1,p2): ",action1," ",action2, "\n")
+    action1s.append(action1)
+    action2s.append(action2)
+    #f.write(action1 + ' ' + action2 + ' ')
     (state1, state2) = getRes(action1, action2)
     p1.state = state1
     p2.state = state2
+for ac1, ac2 in zip(action1s, action2s):
+    f.write(ac1 + str(getRes(ac1, ac2)[0]) + '\n')#ac2 + '\n')#+ ' ' + 
+f.close()
+
 
 
 

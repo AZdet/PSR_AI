@@ -1,0 +1,13 @@
+using RNN to predict opposite's action.(in AI class)
+
+After using RNN
+
+win: 3661
+tie:  811
+lose: 528
+
+
+Before using RNN
+win:  977
+tie: 3069
+lose: 954
