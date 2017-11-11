@@ -3,7 +3,7 @@ lookTab = {"r": 0, "s": 1, "p": 2}
 [r, s, p] = ["r", "s", "p"]
 actions = [r, s, p]
 alpha = 1.1
-upbound = 5000
+upbound = 10001
 [p11, p12, p13] = [0.001, 0.004, 0.995]  # w-, w+, w0
 [p21, p22, p23] = [0.063, 0.791, 0.146]  # t-, t+, t0
 [p31, p32, p33] = [0.989, 0.001, 0.01] # l-, l+, l0
@@ -53,14 +53,14 @@ class Player():
             pr[idx] = p23
             pr[(idx + 1) % 3] = p21
             idx -= 1
-            if idx - 1 < 0:
+            if idx < 0:
                 idx = 2
             pr[idx] = p22
         else: #self.state == lose
             pr[idx] = p33
             pr[(idx + 1) % 3] = p31
             idx -= 1
-            if idx - 1 < 0:
+            if idx < 0:
                 idx = 2
             pr[idx] = p32
         return generateAction(pr[0], pr[1], pr[2])
@@ -79,11 +79,15 @@ p2.setAction(action2)
 (state1, state2) = getRes(action1, action2)
 p1.state = state1
 p2.state = state2
-f = open('./test4.txt', 'w+')#'C:\Users\lenovo\Documents\SRTP\PSR_AI\testcase\test.txt', 'w')
+f = open('./test7.txt', 'w+')#'C:\Users\lenovo\Documents\SRTP\PSR_AI\testcase\test.txt', 'w')
+f1 = open('./label3.txt', 'w+')
+
 action1s = []
 action2s = []
 for i in range(0, upbound):
     action1 = p1.getAction()
+    if i > 0:
+        f1.write(action1 + '\n')   # write the next action as the label
     action2 = p2.getAction()
     p1.setAction(action1)
     p2.setAction(action2)
