@@ -45,4 +45,5 @@ class Keras:
         return self.model.evaluate(data, label)
 
     def get_ai_player(self):
+        print(self.data_dict.word2idx.items())
         return AI(self.data_dict, self.label_dict, self.model)
